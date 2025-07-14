@@ -238,6 +238,7 @@
           left: 10px;
           z-index: 2;
           border-radius: 5px;
+          transition: left 0.5s;
         }
         .openbtn:hover {
           background-color: #3ddacd;
@@ -248,19 +249,15 @@
         .sidenav img.logo {
           width: 50%;
         }
-      }
-      /* Close button for sidebar */
-      .closebtn {
-        position: absolute;
-        top: 0;
-        right: 25px;
-        font-size: 36px;
-        margin-left: 50px;
-        display: none;
-      }
-      @media (max-width: 768px) {
-        .closebtn {
-          display: block;
+        /* When sidebar is open */
+        .sidenav.open {
+          width: 250px;
+        }
+        .main.sidebar-open {
+          margin-left: 250px;
+        }
+        .openbtn.sidebar-open {
+          left: 260px;
         }
       }
     </style>
@@ -271,7 +268,6 @@
     
     <!--Side Navigation Bar-->
     <div class="sidenav" id="mySidenav">
-        <a href="javascript:void(0)" class="closebtn" id="closeBtn">&times;</a>
         <center><img class="logo" src="background_img/l.png"></center><br>
         <a href="dashboard.html"><div class="button">Dashboard</div></a>
         <a href="bookingselection.html"><div class="button">Booking</div></a>
@@ -432,14 +428,30 @@
             };
             
             // Mobile menu toggle
-            document.getElementById('openBtn').addEventListener('click', function() {
-                document.getElementById('mySidenav').style.width = '250px';
-                document.getElementById('mainContent').style.marginLeft = '250px';
+            const openBtn = document.getElementById('openBtn');
+            const sidenav = document.getElementById('mySidenav');
+            const mainContent = document.getElementById('mainContent');
+            
+            openBtn.addEventListener('click', function() {
+                const isOpen = sidenav.classList.toggle('open');
+                mainContent.classList.toggle('sidebar-open');
+                openBtn.classList.toggle('sidebar-open');
+                
+                // Change icon based on state
+                openBtn.textContent = isOpen ? '✕' : '☰';
             });
             
-            document.getElementById('closeBtn').addEventListener('click', function() {
-                document.getElementById('mySidenav').style.width = '0';
-                document.getElementById('mainContent').style.marginLeft = '0';
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', function(event) {
+                if (window.innerWidth <= 768) {
+                    const isClickInside = sidenav.contains(event.target) || openBtn.contains(event.target);
+                    if (!isClickInside && sidenav.classList.contains('open')) {
+                        sidenav.classList.remove('open');
+                        mainContent.classList.remove('sidebar-open');
+                        openBtn.classList.remove('sidebar-open');
+                        openBtn.textContent = '☰';
+                    }
+                }
             });
         });
     </script>
