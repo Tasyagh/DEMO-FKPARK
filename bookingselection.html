@@ -238,7 +238,6 @@
           left: 10px;
           z-index: 2;
           border-radius: 5px;
-          transition: left 0.5s;
         }
         .openbtn:hover {
           background-color: #3ddacd;
@@ -256,8 +255,18 @@
         .main.sidebar-open {
           margin-left: 250px;
         }
-        .openbtn.sidebar-open {
-          left: 260px;
+        /* Close button inside sidebar */
+        .closebtn {
+          position: absolute;
+          top: 15px;
+          right: 15px;
+          font-size: 28px;
+          color: #818181;
+          cursor: pointer;
+          display: none;
+        }
+        .sidenav.open .closebtn {
+          display: block;
         }
       }
     </style>
@@ -268,6 +277,7 @@
     
     <!--Side Navigation Bar-->
     <div class="sidenav" id="mySidenav">
+        <span class="closebtn" id="closeBtn">&times;</span>
         <center><img class="logo" src="background_img/l.png"></center><br>
         <a href="dashboard.html"><div class="button">Dashboard</div></a>
         <a href="bookingselection.html"><div class="button">Booking</div></a>
@@ -429,16 +439,18 @@
             
             // Mobile menu toggle
             const openBtn = document.getElementById('openBtn');
+            const closeBtn = document.getElementById('closeBtn');
             const sidenav = document.getElementById('mySidenav');
             const mainContent = document.getElementById('mainContent');
             
             openBtn.addEventListener('click', function() {
-                const isOpen = sidenav.classList.toggle('open');
-                mainContent.classList.toggle('sidebar-open');
-                openBtn.classList.toggle('sidebar-open');
-                
-                // Change icon based on state
-                openBtn.textContent = isOpen ? '✕' : '☰';
+                sidenav.classList.add('open');
+                mainContent.classList.add('sidebar-open');
+            });
+            
+            closeBtn.addEventListener('click', function() {
+                sidenav.classList.remove('open');
+                mainContent.classList.remove('sidebar-open');
             });
             
             // Close sidebar when clicking outside on mobile
@@ -448,8 +460,6 @@
                     if (!isClickInside && sidenav.classList.contains('open')) {
                         sidenav.classList.remove('open');
                         mainContent.classList.remove('sidebar-open');
-                        openBtn.classList.remove('sidebar-open');
-                        openBtn.textContent = '☰';
                     }
                 }
             });
