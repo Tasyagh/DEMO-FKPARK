@@ -85,10 +85,12 @@
         overflow-x: hidden;
         padding-top: 70px;
         box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        transition: 0.5s;
       }
       .main {
         margin-left: 300px; 
         padding: 20px;
+        transition: margin-left 0.5s;
       }
       .sidenav a {
         padding-bottom: 5px;
@@ -215,11 +217,61 @@
           width: 30%;
         }
       }
+      /* Mobile styles */
+      @media (max-width: 768px) {
+        .sidenav {
+          width: 0;
+          padding-top: 15px;
+        }
+        .main {
+          margin-left: 0;
+        }
+        .openbtn {
+          font-size: 20px;
+          cursor: pointer;
+          background-color: #59c5bc;
+          color: white;
+          padding: 10px 15px;
+          border: none;
+          position: fixed;
+          top: 10px;
+          left: 10px;
+          z-index: 2;
+          border-radius: 5px;
+        }
+        .openbtn:hover {
+          background-color: #3ddacd;
+        }
+        .sidenav .button {
+          width: 90%;
+        }
+        .sidenav img.logo {
+          width: 50%;
+        }
+      }
+      /* Close button for sidebar */
+      .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+        display: none;
+      }
+      @media (max-width: 768px) {
+        .closebtn {
+          display: block;
+        }
+      }
     </style>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+    <!-- Mobile menu button -->
+    <button class="openbtn" id="openBtn">☰</button>
+    
     <!--Side Navigation Bar-->
-    <div class="sidenav">
+    <div class="sidenav" id="mySidenav">
+        <a href="javascript:void(0)" class="closebtn" id="closeBtn">&times;</a>
         <center><img class="logo" src="background_img/l.png"></center><br>
         <a href="dashboard.html"><div class="button">Dashboard</div></a>
         <a href="bookingselection.html"><div class="button">Booking</div></a>
@@ -229,7 +281,7 @@
         <a href="#Account_Module1"><div class="button">Account</div></a>
         <a href="index.html"><div class="button">Log Out</div></a>
     </div>
-    <div class="main">
+    <div class="main" id="mainContent">
         <br><br>
         <!--Header for page Link-->
         <a href="bookingselection.html">
@@ -342,41 +394,53 @@
                 const statusFilter = document.getElementById('parking_status').value;
                 renderParkingCards(typeFilter, statusFilter);
             });
+            
             // Handle booking
-window.handleBooking = function(event, parkingId) {
-    event.preventDefault();
-    const parkingSpot = parkingData.find(p => p.id === parkingId);
-    
-    if (parkingSpot && parkingSpot.status === 'Available') {
-        // Update status immediately for visual feedback
-        parkingSpot.status = 'NOT available';
-        renderParkingCards(
-            document.getElementById('parking_type').value,
-            document.getElementById('parking_status').value
-        );
-        
-        // Store booking in sessionStorage
-        const bookings = JSON.parse(sessionStorage.getItem('bookings') || '[]');
-        bookings.push({
-            id: Date.now(),
-            parkingId: parkingId,
-            parkingNumber: parkingSpot.number,
-            date: new Date().toISOString(),
-            username: username
-        });
-        sessionStorage.setItem('bookings', JSON.stringify(bookings));
-        
-        // Show success message
-        alert(`Successfully booked parking spot ${parkingSpot.number}`);
-        
-        // Wait 2 seconds to ensure UI updates are visible, then redirect
-        setTimeout(() => {
-            window.location.href = 'mybooking.html';
-        }, 2000);
-    } else {
-        alert('This parking spot is no longer available');
-    }
-};
+            window.handleBooking = function(event, parkingId) {
+                event.preventDefault();
+                const parkingSpot = parkingData.find(p => p.id === parkingId);
+                
+                if (parkingSpot && parkingSpot.status === 'Available') {
+                    // Update status immediately for visual feedback
+                    parkingSpot.status = 'NOT available';
+                    renderParkingCards(
+                        document.getElementById('parking_type').value,
+                        document.getElementById('parking_status').value
+                    );
+                    
+                    // Store booking in sessionStorage
+                    const bookings = JSON.parse(sessionStorage.getItem('bookings') || '[]');
+                    bookings.push({
+                        id: Date.now(),
+                        parkingId: parkingId,
+                        parkingNumber: parkingSpot.number,
+                        date: new Date().toISOString(),
+                        username: username
+                    });
+                    sessionStorage.setItem('bookings', JSON.stringify(bookings));
+                    
+                    // Show success message
+                    alert(`Successfully booked parking spot ${parkingSpot.number}`);
+                    
+                    // Wait 2 seconds to ensure UI updates are visible, then redirect
+                    setTimeout(() => {
+                        window.location.href = 'mybooking.html';
+                    }, 2000);
+                } else {
+                    alert('This parking spot is no longer available');
+                }
+            };
+            
+            // Mobile menu toggle
+            document.getElementById('openBtn').addEventListener('click', function() {
+                document.getElementById('mySidenav').style.width = '250px';
+                document.getElementById('mainContent').style.marginLeft = '250px';
+            });
+            
+            document.getElementById('closeBtn').addEventListener('click', function() {
+                document.getElementById('mySidenav').style.width = '0';
+                document.getElementById('mainContent').style.marginLeft = '0';
+            });
         });
     </script>
 </body>
