@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>FK PARK | HOME</title>
+    <title>FK PARK | LOGIN</title>
+    <!-- Favicon -->
     <link rel="icon" href="https://umpsa.edu.my/themes/pana/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -11,27 +12,88 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <style>
-  body {
-    font: 400 15px Lato, sans-serif;
-    line-height: 1.8;
-    color: #818181;
+  #top-logo {
+    text-align: center;
+  }
+  h1, h2 {
+    text-align: center;
+  }
+  form {
+    margin-top: 20px;
+  }
+  .container2 {
+    max-width: 600px;
+    margin: auto;
+    margin-top:10%;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  form div {
+    margin-bottom: 15px;
+  }
+  label {
+    display: block;
+    font-weight: bold;
+  }
+  input[type="text"], input[type="password"]  {
+    width:100% ;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  select{
+    width:100% ;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  button {
+    padding: 10px 20px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #0056b3;
+  }
+  p {
+    text-align: center;
+  }
+  p a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  p a:hover {
+    text-decoration: underline;
+  }
+  footer {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+  }
+  footer p {
     margin: 0;
-    padding: 0;
-    background-color: #f5f5f5;
   }
   .navbar {
     margin-bottom: 0;
     background-color: #15a195;
     z-index: 9999;
     border: 0;
-    font-size: 12px;
-    line-height: 1.42857143;
+    font-size: 12px !important;
+    line-height: 1.42857143 !important;
     letter-spacing: 4px;
     border-radius: 0;
     font-family: Montserrat, sans-serif;
   }
   .navbar li a, .navbar .navbar-brand {
-    color: #fff !important;
+    color: rgb(255, 255, 255) !important;
   }
   .navbar-nav li a:hover, .navbar-nav li.active a {
     color: #042f43 !important;
@@ -44,90 +106,58 @@
   .navbar-default .navbar-toggle .icon-bar {
     background-color: white;
   }
-  .hero-section {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 0 20px;
-    background-color: rgba(0,0,0,0.05);
+  body {
+    font: 400 15px Lato, sans-serif;
+    line-height: 1.8;
+    color: #818181;
   }
-  .hero-title {
-    font-family: Montserrat, sans-serif;
-    font-weight: bold;
-    margin-bottom: 30px;
-    line-height: 1.3;
+  .slideanim {
+    visibility:hidden;
   }
-  .hero-title h1 {
-    font-size: 3.5rem;
-    margin-bottom: 10px;
+  .slide {
+    animation-name: slide;
+    -webkit-animation-name: slide;
+    animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+    visibility: visible;
   }
-  .hero-title h2 {
-    font-size: 2rem;
-    margin-top: 0;
-  }
-  .hero-title h3 {
-    font-size: 1.5rem;
-    margin-top: 10px;
-    font-weight: normal;
-  }
-  .get-started-btn {
-    padding: 15px 40px;
-    font-size: 1.2rem;
-    background-color: #15a195;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s;
-    margin-top: 30px;
-  }
-  .get-started-btn:hover {
-    background-color: #0e7a6f;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  }
-  .logo {
-    display: block;
-  }
-  @media (max-width: 992px) {
-    .hero-title h1 {
-      font-size: 3rem;
-    }
-    .hero-title h2 {
-      font-size: 1.8rem;
+  @keyframes slide {
+    0% {
+      opacity: 0;
+      transform: translateY(70%);
+    } 
+    100% {
+      opacity: 1;
+      transform: translateY(0%);
     }
   }
-  @media (max-width: 768px) {
-    .hero-title h1 {
-      font-size: 2.5rem;
+  @-webkit-keyframes slide {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(70%);
+    } 
+    100% {
+      opacity: 1;
+      -webkit-transform: translateY(0%);
     }
-    .hero-title h2 {
-      font-size: 1.5rem;
+  }
+  @media screen and (max-width: 768px) {
+    .col-sm-4 {
+      text-align: center;
+      margin: 25px 0;
     }
-    .hero-title h3 {
-      font-size: 1.2rem;
+    .btn-lg {
+      width: 100%;
+      margin-bottom: 35px;
     }
+  }
+  @media screen and (max-width: 480px) {
     .logo {
-      display: none;
-    }
-    .get-started-btn {
-      padding: 12px 30px;
-      font-size: 1rem;
+      font-size: 150px;
     }
   }
-  @media (max-width: 480px) {
-    .hero-title h1 {
-      font-size: 2rem;
-    }
-    .hero-title h2 {
-      font-size: 1.3rem;
-    }
-    .hero-title h3 {
-      font-size: 1rem;
-    }
+  .container-fluid {
+    padding: 60px 50px;
   }
 </style>
 <body>
@@ -151,20 +181,117 @@
       </div>
     </div>
   </nav>
-
-  <div class="hero-section">
-    <div class="hero-title">
-      <h1>Fakulti Komputeran</h1>
-      <h2>Car Parking Management System</h2>
-      <h3>(FKPark)</h3>
+  <div class="container2">
+    <h2>Login</h2>
+    <form id="loginForm" onsubmit="return validateLogin()">
+        <div>
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" required><br><br>
+        </div>
+        <div>
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required><br><br>
+        </div>    
+        <div>
+          <label for="user_type">User Type:</label>
+          <select name="user_type" id="user_type" required>
+            <option value="">Select user type</option>
+            <option value="student">Student</option>
+            <option value="admin">Admin</option>
+            <option value="unitkeselamatan">Unit Keselamatan Staff</option>
+          </select>
+        </div>         
+        <section style="text-align:center">
+          <input type="submit" name="submit" value="Login">
+        </section>
+    </form>
+    <br>
+    <p>Don't have an account? 
+      <a href="signup.html">
+        Sign Up
+      </a>
+    </p>
+    <!-- Login status message -->
+    <div id="loginStatus" style="text-align: center; margin-top: 15px;">
     </div>
-    <button class="get-started-btn">GET STARTED</button>
   </div>
-
   <script>
-    document.querySelector('.get-started-btn').addEventListener('click', function() {
-      window.location.href = 'login.html';
-    });
-  </script>
+    // Define valid user credentials (for demonstration only)
+    const validUsers = {
+      student: [
+        { username: "student", password: "student" },
+      ],
+      admin: [
+        { username: "admin", password: "admin123" }
+      ],
+      unitkeselamatan: [
+        { username: "security1", password: "secure123" },
+        { username: "security2", password: "secure123" }
+      ]
+    };
+    function validateLogin() {
+      // Get form values
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const userType = document.getElementById("user_type").value;  
+      // Get the status message element
+      const statusElement = document.getElementById("loginStatus");  
+      // Check if user type is selected
+      if (!userType) {
+        statusElement.innerHTML = "<p style='color:red;'>Please select a user type</p>";
+        return false;
+      }
+      // Check if the user exists
+      const usersOfType = validUsers[userType];
+        if (!usersOfType) {
+          statusElement.innerHTML = "<p style='color:red;'>Invalid user type</p>";
+          return false;
+      }    
+      // Check credentials
+      const userFound = usersOfType.find(user => 
+        user.username === username && user.password === password
+      );
+      if (userFound) {
+        // Successful login action
+        statusElement.innerHTML = "<p style='color:green;'>Login successful! Redirecting...</p>";    
+        // Store login status in sessionStorage
+        sessionStorage.setItem('loggedIn', 'true');
+        sessionStorage.setItem('userType', userType);
+        sessionStorage.setItem('username', username);         
+        // Redirect after a short delay (for demo)
+        setTimeout(() => {
+          // Redirect based on user type
+          switch(userType) {
+            case 'student':
+              window.location.href = 'dashboard.html';
+              break;
+            case 'admin':
+              window.location.href = 'admindashboard.html';
+              break;
+            case 'unitkeselamatan':
+              window.location.href = 'security_dashboard.html';
+              break;
+            default:
+              window.location.href = 'dashboard.html';
+          }
+        }, 1500);  
+        return false; // Prevent form submission
+      } else {
+        // Failed login
+        statusElement.innerHTML = "<p style='color:red;'>Invalid username or password</p>";
+        return false;
+      }
+    }
+    // Optional: Check if user is already logged in when page loads
+    window.onload = function() {
+      if (sessionStorage.getItem('loggedIn') === 'true') {
+        const userType = sessionStorage.getItem('userType');
+        const username = sessionStorage.getItem('username');
+        document.getElementById("loginStatus").innerHTML = 
+          `<p style='color:green;'>Welcome back, ${username} (${userType})! You are already logged in.</p>`;
+      }
+    };
+</script>
 </body>
 </html>
+
