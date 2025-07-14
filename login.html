@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>FK PARK | LOGIN</title>
+    <title>FK PARK | HOME</title>
     <link rel="icon" href="https://umpsa.edu.my/themes/pana/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -44,111 +44,89 @@
   .navbar-default .navbar-toggle .icon-bar {
     background-color: white;
   }
-  h1, h2 {
+  .hero-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    padding: 0 20px;
+    background-color: rgba(0,0,0,0.05);
+  }
+  .hero-title {
     font-family: Montserrat, sans-serif;
-  }
-  .container2 {
-    width: 90%;
-    max-width: 600px;
-    margin: 100px auto 50px;
-    padding: 20px;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-  }
-  form {
-    margin-top: 20px;
-  }
-  form div {
-    margin-bottom: 15px;
-  }
-  label {
-    display: block;
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 30px;
+    line-height: 1.3;
   }
-  input[type="text"], 
-  input[type="password"],
-  select {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
+  .hero-title h1 {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
   }
-  button, input[type="submit"] {
-    padding: 12px 20px;
+  .hero-title h2 {
+    font-size: 2rem;
+    margin-top: 0;
+  }
+  .hero-title h3 {
+    font-size: 1.5rem;
+    margin-top: 10px;
+    font-weight: normal;
+  }
+  .get-started-btn {
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    background-color: #15a195;
     color: white;
-    background-color: #007bff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    width: 100%;
-    font-size: 16px;
+    transition: all 0.3s;
+    margin-top: 30px;
   }
-  button:hover, input[type="submit"]:hover {
-    background-color: #0056b3;
-  }
-  p {
-    text-align: center;
-    margin: 15px 0;
-  }
-  p a {
-    color: #007bff;
-    text-decoration: none;
-  }
-  p a:hover {
-    text-decoration: underline;
-  }
-  footer {
-    text-align: center;
-    padding: 20px;
-    border-top: 1px solid #ccc;
-    background-color: white;
-  }
-  .slideanim {
-    visibility:hidden;
-  }
-  .slide {
-    animation-name: slide;
-    -webkit-animation-name: slide;
-    animation-duration: 1s;
-    -webkit-animation-duration: 1s;
-    visibility: visible;
-  }
-  @keyframes slide {
-    0% {opacity: 0; transform: translateY(70%);} 
-    100% {opacity: 1; transform: translateY(0%);}
-  }
-  @-webkit-keyframes slide {
-    0% {opacity: 0; -webkit-transform: translateY(70%);} 
-    100% {opacity: 1; -webkit-transform: translateY(0%);}
+  .get-started-btn:hover {
+    background-color: #0e7a6f;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   }
   .logo {
     display: block;
   }
-  @media (max-width: 768px) {
-    .container2 {
-      margin-top: 80px;
-      padding: 15px;
+  @media (max-width: 992px) {
+    .hero-title h1 {
+      font-size: 3rem;
     }
-    .navbar-nav {
-      margin: 0;
+    .hero-title h2 {
+      font-size: 1.8rem;
+    }
+  }
+  @media (max-width: 768px) {
+    .hero-title h1 {
+      font-size: 2.5rem;
+    }
+    .hero-title h2 {
+      font-size: 1.5rem;
+    }
+    .hero-title h3 {
+      font-size: 1.2rem;
     }
     .logo {
       display: none;
     }
+    .get-started-btn {
+      padding: 12px 30px;
+      font-size: 1rem;
+    }
   }
   @media (max-width: 480px) {
-    .container2 {
-      width: 95%;
-      margin-top: 70px;
+    .hero-title h1 {
+      font-size: 2rem;
     }
-    input[type="text"], 
-    input[type="password"],
-    select {
-      padding: 10px;
+    .hero-title h2 {
+      font-size: 1.3rem;
+    }
+    .hero-title h3 {
+      font-size: 1rem;
     }
   }
 </style>
@@ -173,89 +151,20 @@
       </div>
     </div>
   </nav>
-  <div class="container2 slide slideanim">
-    <h2>Login</h2>
-    <form id="loginForm" onsubmit="return validateLogin()">
-        <div>
-          <label for="username">Username:</label>
-          <input type="text" id="username" name="username" required>
-        </div>
-        <div>
-          <label for="password">Password:</label>
-          <input type="password" id="password" name="password" required>
-        </div>    
-        <div>
-          <label for="user_type">User Type:</label>
-          <select name="user_type" id="user_type" required>
-            <option value="">Select user type</option>
-            <option value="student">Student</option>
-            <option value="admin">Admin</option>
-            <option value="unitkeselamatan">Unit Keselamatan Staff</option>
-          </select>
-        </div>         
-        <section>
-          <input type="submit" name="submit" value="Login">
-        </section>
-    </form>
-    <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
-    <div id="loginStatus"></div>
+
+  <div class="hero-section">
+    <div class="hero-title">
+      <h1>Fakulti Komputeran</h1>
+      <h2>Car Parking Management System</h2>
+      <h3>(FKPark)</h3>
+    </div>
+    <button class="get-started-btn">GET STARTED</button>
   </div>
-  <footer>
-    <p>&copy; FK PARK</p>
-  </footer>
+
   <script>
-    const validUsers = {
-      student: [{ username: "student", password: "student" }],
-      admin: [{ username: "admin", password: "admin123" }],
-      unitkeselamatan: [
-        { username: "security1", password: "secure123" },
-        { username: "security2", password: "secure123" }
-      ]
-    };
-    function validateLogin() {
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
-      const userType = document.getElementById("user_type").value;  
-      const statusElement = document.getElementById("loginStatus");  
-      if (!userType) {
-        statusElement.innerHTML = "<p style='color:red;'>Please select a user type</p>";
-        return false;
-      }
-      const usersOfType = validUsers[userType];
-      if (!usersOfType) {
-        statusElement.innerHTML = "<p style='color:red;'>Invalid user type</p>";
-        return false;
-      }    
-      const userFound = usersOfType.find(user => 
-        user.username === username && user.password === password
-      );
-      if (userFound) {
-        statusElement.innerHTML = "<p style='color:green;'>Login successful! Redirecting...</p>";    
-        sessionStorage.setItem('loggedIn', 'true');
-        sessionStorage.setItem('userType', userType);
-        sessionStorage.setItem('username', username);         
-        setTimeout(() => {
-          switch(userType) {
-            case 'student': window.location.href = 'dashboard.html'; break;
-            case 'admin': window.location.href = 'admindashboard.html'; break;
-            case 'unitkeselamatan': window.location.href = 'security_dashboard.html'; break;
-            default: window.location.href = 'dashboard.html';
-          }
-        }, 1500);  
-        return false;
-      } else {
-        statusElement.innerHTML = "<p style='color:red;'>Invalid username or password</p>";
-        return false;
-      }
-    }
-    window.onload = function() {
-      if (sessionStorage.getItem('loggedIn') === 'true') {
-        const userType = sessionStorage.getItem('userType');
-        const username = sessionStorage.getItem('username');
-        document.getElementById("loginStatus").innerHTML = 
-          `<p style='color:green;'>Welcome back, ${username} (${userType})! You are already logged in.</p>`;
-      }
-    };
+    document.querySelector('.get-started-btn').addEventListener('click', function() {
+      window.location.href = 'login.html';
+    });
   </script>
 </body>
 </html>
