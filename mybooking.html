@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <title>FKPARK | MY BOOKING</title>
-    <!-- Favicon -->   
     <link rel="icon" href="https://umpsa.edu.my/themes/pana/favicon.ico" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,336 +14,201 @@
     <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
     <style>
         .card-value {
-          font-size: 36px;
-          font-weight: bold;
-          color: #15a195;
+            font-size: 36px;
+            font-weight: bold;
+            color: #15a195;
         }
         body {
-          font: 400 15px Lato, sans-serif;
-          line-height: 1.8;
-          color: #818181;
-          background-size: cover; 
-          background-image: url('background_img/umpbge.png');
-        }
-        .slideanim {
-          visibility:hidden;
-        }
-        .slide {
-          animation-name: slide;
-          -webkit-animation-name: slide;
-          animation-duration: 1s;
-          -webkit-animation-duration: 1s;
-          visibility: visible;
-        }
-        @keyframes slide {
-          0% {
-            opacity: 0;
-            transform: translateY(70%);
-          } 
-          100% {
-            opacity: 1;
-            transform: translateY(0%);
-          }
-        }
-        @-webkit-keyframes slide {
-          0% {
-            opacity: 0;
-            -webkit-transform: translateY(70%);
-          } 
-          100% {
-            opacity: 1;
-            -webkit-transform: translateY(0%);
-          }
-        }
-        @media screen and (max-width: 768px) {
-          .col-sm-4 {
-            text-align: center;
-            margin: 25px 0;
-          }
-          .btn-lg {
-            width: 100%;
-            margin-bottom: 35px;
-          }
-        }
-        @media screen and (max-width: 480px) {
-          .logo {
-            font-size: 150px;
-          }
+            font: 400 15px Lato, sans-serif;
+            line-height: 1.8;
+            color: #818181;
+            background-size: cover; 
+            background-image: url('background_img/umpbge.png');
         }
         .container-fluid {
-          padding: 60px 50px;
+            padding: 60px 50px;
         }
         .sidenav {
-          height: 100%;
-          width: 300px;
-          position: fixed;
-          z-index: 1;
-          top: 0;
-          left: 0;
-          background-color: white;
-          overflow-x: hidden;
-          padding-top: 70px;
-          box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            height: 100%;
+            width: 300px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: white;
+            overflow-x: hidden;
+            padding-top: 70px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            transition: 0.5s;
         }
         .main {
-          margin-left: 300px; 
-          padding: 20px;
+            margin-left: 300px; 
+            padding: 20px;
+            transition: margin-left 0.5s;
         }
         .sidenav a {
-          padding-bottom: 5px;
-          text-decoration: none;
-          font-size: 16px;
-          color: #333;
-          display: block;
-          transition: 0.3s;
+            padding-bottom: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            color: #333;
+            display: block;
+            transition: 0.3s;
         }
         .sidenav a:hover {
-          background-color: #f5f5f5;
+            background-color: #f5f5f5;
         }
         .sidenav .button {
-          background-color: #59c5bc;
-          border: solid black 0px;
-          padding: 10px;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
-          font-size: 16px;
-          margin: 4px 2px;
-          border-radius: 30px;
-          width: 265px;
-          display: block;
-          margin-left: auto;
-          margin-right: auto;
-          transition: all 0.3s;
+            background-color: #59c5bc;
+            border: solid black 0px;
+            padding: 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            border-radius: 30px;
+            width: 265px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            transition: all 0.3s;
         }
         .sidenav .button:hover {
-          background-color: #3ddacd;
-          transform: translateX(1px);
+            background-color: #3ddacd;
+            transform: translateX(1px);
         }
         .sidenav img.logo {
-          width: 60%;
-          margin-bottom: 20px;
-        }
-        .cards-container {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 15px;
-          margin-top: 20px;
-        }
-        .parking-card {
-          background-color: white;
-          border: 1px solid #ddd;
-          border-radius: 5px;
-          width: calc(20% - 16px);
-          padding: 15px;
-          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .card-header {
-          font-weight: bold;
-          margin-bottom: 10px;
-          font-size: 18px;
-        }
-        .card-detail {
-          margin: 5px 0;
-        }
-        .filter-container {
-          background-color: white;
-          text-align: center;
-          border: 1px solid #ddd;
-          padding: 15px;
-          margin-bottom: 20px;
-        }
-        .filter-container select {
-          border: 1px solid #ddd;
-          padding: 8px 12px;
-          border-radius: 4px;
-          width: 20%;
-          margin: 0 5px;
-        }
-        .bookbtn {
-          background-color: #a9d1d7;
-          color: black;
-          border: none;
-          padding: 10px 16px;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
-          font-size: 14px;
-          margin: 4px 2px;
-          cursor: pointer;
-          border-radius: 4px;
-        }
-        .bookbtn:disabled {
-          background-color: #cccccc;
-          cursor: not-allowed;
-        }
-        .savebtn {
-          background-color: #59c5bc;
-          color: white;
-          border: none;
-          padding: 8px 16px;
-          border-radius: 4px;
-          cursor: pointer;
-          transition: background-color 0.3s;
-        }
-        .savebtn:hover {
-          background-color: #3ddacd;
-        }
-        .user-info {
-          background-color: white;
-          text-align: center;
-          border: 1px solid #ddd;
-          padding: 10px;
-          margin-bottom: 20px;
-        }
-        @media (max-width: 1200px) {
-          .parking-card {
-            width: calc(25% - 16px);
-          }
-        }
-        @media (max-width: 992px) {
-          .parking-card {
-            width: calc(33.33% - 16px);
-          }
-        }
-        @media (max-width: 768px) {
-          .parking-card {
-            width: calc(50% - 16px);
-          }
-          .filter-container select, .savebtn {
-            width: 30%;
-          }
-        }
-        .slideanim {
-          visibility:hidden;
-        }
-        .slide {
-          animation-name: slide;
-          -webkit-animation-name: slide;
-          animation-duration: 1s;
-          -webkit-animation-duration: 1s;
-          visibility: visible;
-        }
-        @keyframes slide {
-          0% {
-            opacity: 0;
-            transform: translateY(70%);
-          } 
-          100% {
-            opacity: 1;
-            transform: translateY(0%);
-          }
-        }
-        @-webkit-keyframes slide {
-          0% {
-            opacity: 0;
-            -webkit-transform: translateY(70%);
-          } 
-          100% {
-            opacity: 1;
-            -webkit-transform: translateY(0%);
-          }
-        }
-        @media screen and (max-width: 768px) {
-          .col-sm-4 {
-            text-align: center;
-            margin: 25px 0;
-          }
-          .btn-lg {
-            width: 100%;
-            margin-bottom: 35px;
-          }
-        }
-        @media screen and (max-width: 480px) {
-          .logo {
-            font-size: 150px;
-          }
-        }
-        .container-fluid {
-          padding: 60px 50px;
+            width: 60%;
+            margin-bottom: 20px;
         }
         .booking-card {
-          background-color: white;
-          border-radius: 10px;
-          box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-          padding: 20px;
-          margin-bottom: 20px;
-          display: flex;
-          flex-wrap: wrap;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
         }
         .booking-info {
-          flex: 1;
-          min-width: 250px;
+            flex: 1;
+            min-width: 250px;
         }
         .booking-qr {
-          flex: 0 0 200px;
-          text-align: center;
-          padding: 10px;
+            flex: 0 0 200px;
+            text-align: center;
+            padding: 10px;
         }
         .booking-actions {
-          flex: 0 0 100%;
-          display: flex;
-          justify-content: flex-end;
-          gap: 10px;
-          margin-top: 15px;
-        }
-        .bookbtn, .cancelbtn {
-          padding: 8px 15px;
-          border: none;
-          border-radius: 4px;
-          cursor: pointer;
-          font-weight: bold;
-        }
-        .bookbtn {
-          background-color: #4CAF50;
-          color: white;
-        }
-        .cancelbtn {
-          background-color: #f44336;
-          color: white;
+            flex: 0 0 100%;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 15px;
         }
         .booking-number {
-          font-weight: bold;
-          color: #15a195;
-          font-size: 18px;
+            font-weight: bold;
+            color: #15a195;
+            font-size: 18px;
         }
         .booking-date {
-          color: #818181;
-          font-size: 14px;
-        }
-        .booking-actions {
-          flex: 0 0 150px;
-          text-align: right;
+            color: #818181;
+            font-size: 14px;
         }
         .edit-btn, .cancel-btn {
-          padding: 8px 15px;
-          border: none;
-          border-radius: 4px;
-          cursor: pointer;
-          font-weight: bold;
-          margin: 5px;
-          height: 40px;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 5px;
+            height: 40px;
         }
         .edit-btn {
-          background-color: #4CAF50;
-          color: white;
+            background-color: #4CAF50;
+            color: white;
         }
         .cancel-btn {
-          background-color: #f44336;
-          color: white;
+            background-color: #f44336;
+            color: white;
         }
         .user-info {
-          background-color: white;
-          text-align: center;
-          border: 1px solid #ddd;
-          padding: 10px;
-          margin-bottom: 20px;
+            background-color: white;
+            text-align: center;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .openbtn {
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #59c5bc;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 2;
+            border-radius: 5px;
+            display: none;
+        }
+        .openbtn:hover {
+            background-color: #3ddacd;
+        }
+        .closebtn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 28px;
+            color: #818181;
+            cursor: pointer;
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .sidenav {
+                width: 0;
+                padding-top: 15px;
+            }
+            .main {
+                margin-left: 0;
+            }
+            .openbtn {
+                display: block;
+            }
+            .sidenav .button {
+                width: 90%;
+            }
+            .sidenav img.logo {
+                width: 50%;
+            }
+            .sidenav.open {
+                width: 250px;
+            }
+            .main.sidebar-open {
+                margin-left: 250px;
+            }
+            .sidenav.open .closebtn {
+                display: block;
+            }
+            .booking-card {
+                flex-direction: column;
+            }
+            .booking-qr {
+                flex: 0 0 auto;
+                margin-bottom: 15px;
+            }
+            .booking-actions {
+                justify-content: center;
+            }
         }
     </style>
 </head>
 <body>
-    <!--Side Navigation Bar-->
-    <div class="sidenav">
+    <button class="openbtn" id="openBtn">☰</button>
+    
+    <div class="sidenav" id="mySidenav">
+        <span class="closebtn" id="closeBtn">&times;</span>
         <center><img class="logo" src="background_img/l.png"></center><br>
         <a href="dashboard.html"><div class="button">Dashboard</div></a>
         <a href="bookingselection.html"><div class="button">Booking</div></a>
@@ -354,26 +218,17 @@
         <a href="#Account_Module1"><div class="button">Account</div></a>
         <a href="index.html"><div class="button">Log Out</div></a>
     </div>
-    <div class="main">
+    <div class="main" id="mainContent">
         <br><br>
-        <!--Header for page Link-->
-        <a href="bookingselection.html">
-            <b>Booking Selection | </b>
-        </a> 
-        <a href="mybooking.html">
-            My Booking
-        </a>
+        <a href="bookingselection.html"><b>Booking Selection | </b></a> 
+        <a href="mybooking.html">My Booking</a>
         <br><br>
-        <!--User Information-->
         <div class="user-info">
             <p>USER: <span id="usernameDisplay"></span></p>
         </div>
         <br>
-        <!--Bookings List-->
         <div class="booking-container">
-            <div id="bookingsList">
-                <!-- JS booking script-->
-            </div>
+            <div id="bookingsList"></div>
         </div>
     </div>
 
@@ -387,11 +242,9 @@
                 return;
             }
             
-            // Display username
             document.getElementById('usernameDisplay').textContent = username;
             
-            // Load bookings from sessionStorage
-            const bookings = JSON.parse(sessionStorage.getItem('bookings') || []);
+            const bookings = JSON.parse(sessionStorage.getItem('bookings') || '[]');
             const bookingsList = document.getElementById('bookingsList');
             
             if (bookings.length === 0) {
@@ -399,7 +252,6 @@
                 return;
             }
             
-            // Display bookings
             bookings.forEach((booking, index) => {
                 const bookingDate = new Date(booking.date);
                 const formattedDate = bookingDate.toLocaleString('en-US', {
@@ -408,7 +260,6 @@
                     day: 'numeric',
                 });
                 
-                // Generate QR code data
                 const qrData = JSON.stringify({
                     bookingId: booking.id,
                     parkingNumber: booking.parkingNumber,
@@ -425,7 +276,7 @@
                         <p>Scan QR Code</p>
                     </div>
                     <div class="booking-info">
-                      <br>
+                        <br>
                         <p><b>Parking Lot:</b> ${booking.parkingNumber}</p>
                         <p><b>Parking Type:</b> B </p>
                         <p><b>Duration:</b> 1 hours</p>
@@ -438,22 +289,42 @@
                 `;
                 bookingsList.appendChild(item);
             });
+
+            const openBtn = document.getElementById('openBtn');
+            const closeBtn = document.getElementById('closeBtn');
+            const sidenav = document.getElementById('mySidenav');
+            const mainContent = document.getElementById('mainContent');
+            
+            openBtn.addEventListener('click', function() {
+                sidenav.classList.add('open');
+                mainContent.classList.add('sidebar-open');
+            });
+            
+            closeBtn.addEventListener('click', function() {
+                sidenav.classList.remove('open');
+                mainContent.classList.remove('sidebar-open');
+            });
+            
+            document.addEventListener('click', function(event) {
+                if (window.innerWidth <= 768) {
+                    const isClickInside = sidenav.contains(event.target) || openBtn.contains(event.target);
+                    if (!isClickInside && sidenav.classList.contains('open')) {
+                        sidenav.classList.remove('open');
+                        mainContent.classList.remove('sidebar-open');
+                    }
+                }
+            });
         });
         
-        // Edit booking function
         window.editBooking = function(bookingId) {
             alert('This is only demo page, in real website, it will open updatemybooking.php');
-            // In a real app, this would open a form to edit booking details
         };
         
-        // Cancel booking function
         window.cancelBooking = function(bookingId) {
             if (confirm('Are you sure you want to cancel this booking?')) {
-                // Remove booking from sessionStorage
                 const bookings = JSON.parse(sessionStorage.getItem('bookings') || '[]');
                 const updatedBookings = bookings.filter(booking => booking.id !== bookingId);
                 sessionStorage.setItem('bookings', JSON.stringify(updatedBookings));
-                // Refresh the page to show updated list
                 window.location.reload();
             }
         };
